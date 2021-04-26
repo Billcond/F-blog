@@ -1,6 +1,6 @@
 <template>
-    <div class="outer">
-        <h2>留言板</h2>
+    <div class="outer" style="display:flex">
+        <h2 >留言板<br><br><br>asdfasdf</h2>
     </div> 
 </template>
 <script>
