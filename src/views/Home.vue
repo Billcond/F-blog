@@ -1,5 +1,6 @@
 <template>
   <a-layout id="components-layout-demo-top" class="layout">
+
     <a-layout-header style="visibility:hidden">
     <a-menu
         theme="dark"
@@ -25,19 +26,17 @@
           <a-menu-item v-for="(items,index) in frame" :key = "index" @click="clickFrame(items)">{{items}}</a-menu-item>
       </a-sub-menu>
       <a-sub-menu >
-        <span slot="title" class="submenu-title-wrapper" @click="clickMessageBoard"> 留言板</span>
+        <span slot="title" class="submenu-title-wrapper">留言板</span>
       </a-sub-menu>
       <a-sub-menu >
-        <span slot="title" class="submenu-title-wrapper" @click="clickNeighbor">邻居</span>
+        <span slot="title" class="submenu-title-wrapper">邻居</span>
       </a-sub-menu>
       <a-sub-menu >
-        <span slot="title" class="submenu-title-wrapper" @click="clickOther">其他</span>
+        <span slot="title" class="submenu-title-wrapper">其他</span>
       </a-sub-menu>
-      <!-- <a-input-search  placeholder="input search text" style="margin-left:15vw;width: 200px" @search="clickOnSearch" /> -->
-      <!--缩小放大 样式就不见了-->
+      <a-input-search  placeholder="input search text" style="margin-left:15vw;width: 200px" @search="onSearch" /><!--缩小放大 样式就不见了-->
     </a-menu>
     </a-layout-header>
-    
     <a-layout-content style="padding: 0 5vw;overflow:hidden" >
           <!--轮播图-->
           <a-breadcrumb style="margin: 3vw"></a-breadcrumb>
@@ -62,7 +61,7 @@
         <!--文章内容-->
         <!-- -->
         <a-list item-layout="vertical" size="large" :pagination="pagination" :data-source="listData">
-          <a-list-item  slot="renderItem" key="item.title" slot-scope="item" ><!--这里本来有,index 删了没事-->
+          <a-list-item slot="renderItem" key="item.title" slot-scope="item" ><!--这里本来有,index 删了没事-->
             <template v-for="{ type, text } in actions" slot="actions">
               <span :key="type"><!--这里是为每个组件下面的图标赋值--->
                 <a-icon :type="type" style="margin-right: 8px" />
@@ -88,8 +87,8 @@
     <a-layout-footer style="text-align: center">
       Use The Ant Design
     </a-layout-footer>
-    
   </a-layout>
+  
 </template>
 
 <script>
@@ -113,12 +112,13 @@ listData.push({
       '顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶yp顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶efficiently.',
 });
 export default {
+  components: {  },
     name:"Home",
     data(){
         return{
           frontend:["Javascript",'CSS','HTML'],
           afterend:["Node","Ko2"],
-          frame:["Vue","React"],
+          frame:["Vue","Reject"],
           listData,
         pagination: {
         /*可以直接在这里该边下面的页码 */
@@ -139,11 +139,10 @@ export default {
       clickFrontEnd(index){
         switch(index){
           case this.frontend[0]:{
-            this.$router.replace("/fblog/frontend")
+            console.log('条了')
             break;
           }
           case this.frontend[1]:{
-            
             console.log('嗯嗯?')
             break;
           }
@@ -156,7 +155,22 @@ export default {
       clickAfterEnd(index){
         switch(index){
           case this.afterend[0]:{
-            this.$router.replace("/fblog/afterend")
+            console.log('条了')
+            break;
+          }
+          case this.afterend[1]:{
+            console.log('嗯嗯?')
+            break;
+          }
+          case this.afterend[2]:{
+            console.log('嘿嘿')
+            break;
+          }
+        }
+      },
+      clickFrame(index){
+        switch(index){
+          case this.f[0]:{
             console.log('条了')
             break;
           }
@@ -166,34 +180,9 @@ export default {
           }
         }
       },
-      clickFrame(index){
-        switch(index){
-          case this.frame[0]:{
-            this.$router.replace("/fblog/frame")
-            console.log('条了')
-            break;
-          }
-          case this.frame[1]:{
-            console.log('嗯嗯?')
-            break;
-          }
-        }
-      },
-      clickMessageBoard(){
-        this.$router.replace("/fblog/messageboard")
-      },
-      clickNeighbor(){
-        this.$router.replace("/fblog/neighbor")
-      },
-      clickOther(){//
-        this.$router.push("/fblog/other")
-      },
-      clickHome(){
-        this.$router.push("/fblog/home")
-      }
-      // clickOnSearch(){
+      onSearch(){
 
-      // },
+      },
     },
     
 }
@@ -208,7 +197,7 @@ export default {
   background-color: aquamarine;
 }
 
-/*下面是轮播图的 */
+
 .ant-carousel >>> .slick-slide {
   text-align: center;
   height: 30vw;

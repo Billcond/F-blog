@@ -34,10 +34,9 @@
       </a-sub-menu>
       <!-- <a-input-search  placeholder="input search text" style="margin-left:15vw;width: 200px" @search="onSearch" /> -->
       <!--缩小放大 样式就不见了-->
-    </a-menu>
-         
+    </a-menu>  
     </a-layout-header>
- <router-view/>
+    <router-view/>
   </div>
 </template>
 
@@ -50,18 +49,6 @@
 </style>
 
 <script>
-const listData = [];
-for (let i = 0; i < 23; i++) {
-  listData.push({
-    href: 'https://www.antdv.com/',//跳转连接
-    title: `ant design vue part ${i}`,//第几个
-    description:
-      'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    content://内容
-      'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficientWe supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-  });
-}
-
 export default {
   components: {  },
     name:"",
@@ -70,20 +57,6 @@ export default {
           frontend:["Javascript",'CSS','HTML'],
           afterend:["Node","Ko2"],
           frame:["Vue","React"],
-          listData,
-        pagination: {
-        /*可以直接在这里该边下面的页码 */
-        onChange: page => {
-          console.log(page);
-        },
-        pageSize: 3,
-      },
-      actions: [///这里表示文章下面的属性
-        { type: 'eye', text: '156' },
-        { type: 'like-o', text: '2' },
-        { type: 'message' , text: '3'},
-        { type: 'history' ,text:"2020-4-26 20:00:00"}
-      ],
         }
     },
     methods:{
@@ -91,15 +64,13 @@ export default {
         switch(index){
           case this.frontend[0]:{
             this.$router.replace("/fblog/frontend")
+            console.log('asdf')
             break;
           }
           case this.frontend[1]:{
-            
-            console.log('嗯嗯?')
             break;
           }
           case this.frontend[2]:{
-            console.log('嘿嘿')
             break;
           }
         }
@@ -108,7 +79,6 @@ export default {
         switch(index){
           case this.afterend[0]:{
             this.$router.replace("/fblog/afterend")
-            console.log('条了')
             break;
           }
           case this.afterend[1]:{
@@ -120,6 +90,7 @@ export default {
         switch(index){
           case this.frame[0]:{
             this.$router.replace("/fblog/frame")
+            console.log('asdf')
             break;
           }
           case this.frame[1]:{
@@ -128,9 +99,11 @@ export default {
         }
       },
       clickMessageBoard(){
+        console.log('asdf')
         this.$router.replace("/fblog/messageboard")
       },
       clickNeighbor(){
+        console.log('asdf')
         this.$router.replace("/fblog/neighbor")
       },
       clickOther(){//
