@@ -1,6 +1,5 @@
 <template>
   <a-layout id="components-layout-demo-top" class="layout">
-
     <a-layout-header style="visibility:hidden">
     <a-menu
         theme="dark"
@@ -8,33 +7,6 @@
         :style="{ lineHeight: '64px'}"
         style="margin-left:5vw"
       >
-      <a-menu-item  id="myFlag"  style="background-color:#001529;font-size:2.2rem">Fblog</a-menu-item>
-      <a-sub-menu >
-        <span slot="title" class="submenu-title-wrapper">首页</span>
-      </a-sub-menu>
-
-      <a-sub-menu>
-        <span slot="title" class="submenu-title-wrapper">前端</span>
-          <a-menu-item v-for="(items,index) in frontend" :key="index" @click="clickFrontEnd(items)">{{items}}</a-menu-item>
-      </a-sub-menu>
-      <a-sub-menu >
-        <span slot="title" class="submenu-title-wrapper">后端</span>
-          <a-menu-item v-for="(items,index) in afterend" :key = "index" @click="clickAfterEnd(items)">{{items}}</a-menu-item>
-      </a-sub-menu>
-      <a-sub-menu >
-        <span slot="title" class="submenu-title-wrapper">框架</span>
-          <a-menu-item v-for="(items,index) in frame" :key = "index" @click="clickFrame(items)">{{items}}</a-menu-item>
-      </a-sub-menu>
-      <a-sub-menu >
-        <span slot="title" class="submenu-title-wrapper">留言板</span>
-      </a-sub-menu>
-      <a-sub-menu >
-        <span slot="title" class="submenu-title-wrapper">邻居</span>
-      </a-sub-menu>
-      <a-sub-menu >
-        <span slot="title" class="submenu-title-wrapper">其他</span>
-      </a-sub-menu>
-      <a-input-search  placeholder="input search text" style="margin-left:15vw;width: 200px" @search="onSearch" /><!--缩小放大 样式就不见了-->
     </a-menu>
     </a-layout-header>
     <a-layout-content style="padding: 0 5vw;overflow:hidden" >
@@ -83,7 +55,7 @@
       </div>
 
       </a-layout-content>
-
+      
     <a-layout-footer style="text-align: center">
       Use The Ant Design
     </a-layout-footer>
@@ -116,9 +88,6 @@ export default {
     name:"Home",
     data(){
         return{
-          frontend:["Javascript",'CSS','HTML'],
-          afterend:["Node","Ko2"],
-          frame:["Vue","Reject"],
           listData,
         pagination: {
         /*可以直接在这里该边下面的页码 */
@@ -136,53 +105,7 @@ export default {
         }
     },
     methods:{
-      clickFrontEnd(index){
-        switch(index){
-          case this.frontend[0]:{
-            console.log('条了')
-            break;
-          }
-          case this.frontend[1]:{
-            console.log('嗯嗯?')
-            break;
-          }
-          case this.frontend[2]:{
-            console.log('嘿嘿')
-            break;
-          }
-        }
-      },
-      clickAfterEnd(index){
-        switch(index){
-          case this.afterend[0]:{
-            console.log('条了')
-            break;
-          }
-          case this.afterend[1]:{
-            console.log('嗯嗯?')
-            break;
-          }
-          case this.afterend[2]:{
-            console.log('嘿嘿')
-            break;
-          }
-        }
-      },
-      clickFrame(index){
-        switch(index){
-          case this.f[0]:{
-            console.log('条了')
-            break;
-          }
-          case this.afterend[1]:{
-            console.log('嗯嗯?')
-            break;
-          }
-        }
-      },
-      onSearch(){
-
-      },
+      
     },
     
 }

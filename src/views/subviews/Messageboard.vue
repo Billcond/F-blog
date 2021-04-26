@@ -1,5 +1,5 @@
 <template>
-    <div class="outer" style="display:flex">
+    <div class="outer" style="overflow:hidden">
         <h2 >留言板<br><br><br>asdfasdf</h2>
     </div> 
 </template>

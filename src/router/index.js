@@ -27,7 +27,7 @@ const routes = [
   {
     path:'/fblog/frontend',
     name:'Frontend',
-    component:SubViewTemplate,
+    component:Frontend,
   },
   {
     path:'/fblog/afterend',

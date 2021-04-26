@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" >
     <a-layout-header style="position:fixed;width:100%;z-index:999">
     <a-menu
         theme="dark"
@@ -9,19 +9,19 @@
       >
       <a-menu-item  id="myFlag"  style="background-color:#001529;font-size:2.2rem">Fblog</a-menu-item>
       <a-sub-menu >
-        <span slot="title" class="submenu-title-wrapper" @click="clickHome">首页</span>
+        <span slot="title" class="submenu-title-wrapper"  @click="clickHome">首页</span>
       </a-sub-menu>
       <a-sub-menu>
         <span slot="title" class="submenu-title-wrapper">前端</span>
-          <a-menu-item v-for="(items,index) in frontend" :key="index" @click="clickFrontEnd(items)">{{items}}</a-menu-item>
+          <a-menu-item  v-for="(items) in frontend" :key="items" @click="clickFrontEnd(items)">{{items}}</a-menu-item>
       </a-sub-menu>
       <a-sub-menu >
         <span slot="title" class="submenu-title-wrapper">后端</span>
-          <a-menu-item v-for="(items,index) in afterend" :key = "index" @click="clickAfterEnd(items)">{{items}}</a-menu-item>
+          <a-menu-item v-for="(items) in afterend" :key = "items" @click="clickAfterEnd(items)">{{items}}</a-menu-item>
       </a-sub-menu>
       <a-sub-menu >
         <span slot="title" class="submenu-title-wrapper">框架</span>
-          <a-menu-item v-for="(items,index) in frame" :key = "index" @click="clickFrame(items)">{{items}}</a-menu-item>
+          <a-menu-item v-for="(items) in frame" :key = "items" @click="clickFrame(items)">{{items}}</a-menu-item>
       </a-sub-menu>
       <a-sub-menu >
         <span slot="title" class="submenu-title-wrapper" @click="clickMessageBoard">留言板</span>
@@ -46,6 +46,10 @@
   padding: 0;
   font-size: 16px;
 }
+#app{
+  width:100vw;
+  overflow: hidden;
+}
 </style>
 
 <script>
@@ -57,6 +61,7 @@ export default {
           frontend:["Javascript",'CSS','HTML'],
           afterend:["Node","Ko2"],
           frame:["Vue","React"],
+          buttonKey:1,
         }
     },
     methods:{
