@@ -32,7 +32,7 @@ const routes = [
   {
     path:'/fblog/afterend',
     name:"Afterend",
-    component:SubViewTemplate,
+    component:Afterend,
   },
   {
     path:'/fblog/frame',

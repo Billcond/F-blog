@@ -9,29 +9,29 @@
       >
     </a-menu>
     </a-layout-header>
+ <!--轮播图-->
+    <a-carousel arrows style="padding: 3vw 5vw;overflow:hidden" >
+      <div
+        slot="prevArrow"
+        class="custom-slick-arrow"
+        style="left: 10px;zIndex: 1"
+      >
+        <a-icon type="left-circle" />
+      </div>
+      <div slot="nextArrow" class="custom-slick-arrow" style="right: 10px">
+        <a-icon type="right-circle" />
+      </div>
+      <div><img src="../ScrollImage/1.png" alt=""></div>
+      <div><img src="../ScrollImage/2.png" alt=""></div>
+      <div><img src="../ScrollImage/3.png" alt=""></div>
+    </a-carousel>
+
+    <!--布局 中间的内容-->
     <a-layout-content style="padding: 0 5vw;overflow:hidden" >
-          <!--轮播图-->
-          <a-breadcrumb style="margin: 3vw"></a-breadcrumb>
-          <a-carousel arrows >
-            <div
-              slot="prevArrow"
-              class="custom-slick-arrow"
-              style="left: 10px;zIndex: 1"
-            >
-              <a-icon type="left-circle" />
-            </div>
-            <div slot="nextArrow" class="custom-slick-arrow" style="right: 10px">
-              <a-icon type="right-circle" />
-            </div>
-            <div><img src="../ScrollImage/1.png" alt=""></div>
-            <div><img src="../ScrollImage/2.png" alt=""></div>
-            <div><img src="../ScrollImage/3.png" alt=""></div>
-          </a-carousel>
-
-
-      <div :style="{ background: '#fff', padding: '24px', minHeight: '280px' }">
+      <div :style="{ background: '#fff', padding: '24px', minHeight: '280px'}">
         <!--文章内容-->
         <!-- -->
+        <h1>最新发布</h1>
         <a-list item-layout="vertical" size="large" :pagination="pagination" :data-source="listData">
           <a-list-item slot="renderItem" key="item.title" slot-scope="item" ><!--这里本来有,index 删了没事-->
             <template v-for="{ type, text } in actions" slot="actions">
@@ -40,12 +40,6 @@
                 {{ text }}
               </span>
             </template>
-            <img
-              slot="extra"
-              width="272"
-              alt="logo"
-              src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-            />
             <a-list-item-meta :description="item.description">
               <a slot="title" :href="item.href">{{ item.title }}</a>
             </a-list-item-meta>
@@ -53,9 +47,11 @@
           </a-list-item>
         </a-list>
       </div>
+    </a-layout-content>
 
-      </a-layout-content>
-      
+    
+
+
     <a-layout-footer style="text-align: center">
       Use The Ant Design
     </a-layout-footer>

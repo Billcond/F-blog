@@ -24,13 +24,13 @@
           <a-menu-item v-for="(items) in frame" :key = "items" @click="clickFrame(items)">{{items}}</a-menu-item>
       </a-sub-menu>
       <a-sub-menu >
-        <span slot="title" class="submenu-title-wrapper" @click="clickMessageBoard">留言板</span>
+        <span slot="title" class="submenu-title-wrapper" @click="clickMessageBoard('messageboard')">留言板</span>
       </a-sub-menu>
       <a-sub-menu >
-        <span slot="title" class="submenu-title-wrapper" @click="clickNeighbor">邻居</span>
+        <span slot="title" class="submenu-title-wrapper" @click="clickNeighbor('neighbor')">邻居</span>
       </a-sub-menu>
       <a-sub-menu >
-        <span slot="title" class="submenu-title-wrapper" @click="clickOther">其他</span>
+        <span slot="title" class="submenu-title-wrapper" @click="clickOther('other')">其他</span>
       </a-sub-menu>
       <!-- <a-input-search  placeholder="input search text" style="margin-left:15vw;width: 200px" @search="onSearch" /> -->
       <!--缩小放大 样式就不见了-->
@@ -40,17 +40,7 @@
   </div>
 </template>
 
-<style>
-.html,.body{
-  margin:0;
-  padding: 0;
-  font-size: 16px;
-}
-#app{
-  width:100vw;
-  overflow: hidden;
-}
-</style>
+
 
 <script>
 export default {
@@ -69,13 +59,15 @@ export default {
         switch(index){
           case this.frontend[0]:{
             this.$router.replace("/fblog/frontend")
-            console.log('asdf')
+            console.log(this.frontend[0])
             break;
           }
           case this.frontend[1]:{
+            console.log(this.frontend[1])
             break;
           }
           case this.frontend[2]:{
+            console.log(this.frontend[2])
             break;
           }
         }
@@ -84,9 +76,11 @@ export default {
         switch(index){
           case this.afterend[0]:{
             this.$router.replace("/fblog/afterend")
+            console.log(this.afterend[0])
             break;
           }
           case this.afterend[1]:{
+            console.log(this.afterend[0])
             break;
           }
         }
@@ -95,23 +89,25 @@ export default {
         switch(index){
           case this.frame[0]:{
             this.$router.replace("/fblog/frame")
-            console.log('asdf')
+            console.log(this.frame[0])
             break;
           }
           case this.frame[1]:{
+            console.log(this.frame[1])
             break;
           }
         }
       },
-      clickMessageBoard(){
-        console.log('asdf')
+      clickMessageBoard(msg){
+        console.log(msg)
         this.$router.replace("/fblog/messageboard")
       },
-      clickNeighbor(){
-        console.log('asdf')
+      clickNeighbor(msg){
+        console.log(msg)
         this.$router.replace("/fblog/neighbor")
       },
-      clickOther(){//
+      clickOther(msg){//
+      console.log(msg)
         this.$router.push("/fblog/other")
       },
       clickHome(){
@@ -124,3 +120,14 @@ export default {
     
 }
 </script>
+<style>
+.html,.body{
+  margin:0;
+  padding: 0;
+  font-size: 16px;
+}
+#app{
+  /* width:100vw; 这里设置了100 就会横向有一个margin的占*/
+  overflow: hidden;
+}
+</style>
