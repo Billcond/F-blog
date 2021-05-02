@@ -45,7 +45,6 @@
 <script>
 export default {
   components: {  },
-    name:"",
     data(){
         return{
           frontend:["Javascript",'CSS','HTML'],

@@ -34,13 +34,14 @@
         <h1>最新发布</h1>
         <a-list item-layout="vertical" size="large" :pagination="pagination" :data-source="listData">
           <a-list-item slot="renderItem" key="item.title" slot-scope="item" ><!--这里本来有,index 删了没事-->
-            <template v-for="{ type, text } in actions" slot="actions">
+            <template v-for="{ type, text } in item.action" slot="actions">
               <span :key="type"><!--这里是为每个组件下面的图标赋值--->
                 <a-icon :type="type" style="margin-right: 8px" />
                 {{ text }}
               </span>
             </template>
-            <a-list-item-meta :description="item.description">
+            <a-list-item-meta>
+              <!--原来是这样的  可以有description这个属性   <a-list-item-meta :description="item.description">-->
               <a slot="title" :href="item.href">{{ item.title }}</a>
             </a-list-item-meta>
             {{ item.content }}<!--这里是文章内容-->
@@ -48,10 +49,6 @@
         </a-list>
       </div>
     </a-layout-content>
-
-    
-
-
     <a-layout-footer style="text-align: center">
       Use The Ant Design
     </a-layout-footer>
@@ -103,6 +100,34 @@ export default {
     methods:{
       
     },
+    created(){
+      this.getRequest('/articles').then(resp=>{
+          if(resp){
+            console.log("主页面中访问数据库 有响应------------------",resp.data)
+            //更新data中的数据
+            this.listData = [];
+            resp.data.sort((o1,o2)=>{
+              return o1.createtime>o2.createtime?-1:1
+            })
+            for(let o of resp.data){
+              let obj = {};//一开始这个在for外卖导致逻辑出错
+              console.log('每一项',o)
+              obj.title = o.title;
+              obj.content = o.context;
+              obj.action = [
+                {type:'eye',text:o.seecount},
+                {type:'like-o',text:o.likes},
+                {type:'message',text:1},
+                {type:'history',text:o.createtime}
+              ]
+              this.listData.push(obj) 
+            }
+          }else{
+            console.log('无响应')
+            return false;
+          }
+        })
+    }
     
 }
 </script>
