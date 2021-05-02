@@ -14,9 +14,7 @@
                 <!-- -->
                 <a-breadcrumb>
                   <a-breadcrumb-item><a href="">Home</a></a-breadcrumb-item>
-                  <a-breadcrumb-item><a href="">框架</a></a-breadcrumb-item>
-                  <a-breadcrumb-item><a href="">Vue</a></a-breadcrumb-item>
-                  <a-breadcrumb-item>An Application</a-breadcrumb-item>
+                  <a-breadcrumb-item><a>{{this.$store.state.atricleType}}</a></a-breadcrumb-item>
                 </a-breadcrumb>
                 
                 <a-list item-layout="vertical" size="large" :pagination="pagination" :data-source="listData">
@@ -94,6 +92,29 @@ export default {
         { type: 'history' ,text:"2020-4-26 20:00:00"}
       ],
 
+        }
+    },
+    watch:{
+      '$store.state.atricleType':function(){
+        console.log("watch",this.$store.state.atricleType)
+        if(this.$store.state.atricleType=="Vue"){
+          this.listData=[];
+          this.listData = this.$store.state.vueArticles;
+        }
+        if(this.$store.state.atricleType=="React"){
+          this.listData=[];
+          this.listData = this.$store.state.reactArticles;
+        }
+      }
+    },
+    created(){
+      if(this.$store.state.atricleType=="Vue"){
+          this.listData=[];
+          this.listData = this.$store.state.vueArticles;
+        }
+        if(this.$store.state.atricleType=="React"){
+          this.listData=[];
+          this.listData = this.$store.state.reactArticles;
         }
     }
 }

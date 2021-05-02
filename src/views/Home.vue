@@ -109,23 +109,46 @@ export default {
             resp.data.sort((o1,o2)=>{
               return o1.createtime>o2.createtime?-1:1
             })
+            //数据解析与展示 
             let md = new this.$markdownIt()
             for(let o of resp.data){
-              let obj = {};//一开始这个在for外卖导致逻辑出错
-              console.log('每一项',o)
-              obj.title = o.title;
-              let tempStr = md.render(o.context)
-              tempStr = tempStr.replace(/<[^>]+>/g,"");
-              tempStr = tempStr.replace(/\s+/g,"");
-              obj.content = tempStr;
-              obj.action = [
+                let obj = {};//一开始这个在for外卖导致逻辑出错
+              //console.log('每一项',o)
+                obj.title = o.title;
+                let tempStr = md.render(o.context)
+                tempStr = tempStr.replace(/<[^>]+>/g,"");
+                tempStr = tempStr.replace(/\s+/g,"");
+                obj.content = tempStr;
+                obj.type = o.type;
+                obj.action = [
                 {type:'eye',text:o.seecount},
                 {type:'like-o',text:o.likes},
                 {type:'message',text:1},
                 {type:'history',text:o.createtime}
-              ]
-              this.listData.push(obj) 
+                ]
+                this.$store.state.allArticles.push(obj)
             }
+            this.$store.state.javascriptArticles = this.$store.state.allArticles.filter((o)=>o.type=="JavaScript"?true:false);
+            this.$store.state.cssArticles = this.$store.state.allArticles.filter((o)=>o.type=="CSS"?true:false);
+            this.$store.state.htmlArticles = this.$store.state.htmlArticles.filter((o)=>o.type=="HTML"?true:false);
+            this.$store.state.nodeArticles = this.$store.state.allArticles.filter((o)=>o.type=="Node"?true:false);
+            this.$store.state.koaArticles = this.$store.state.allArticles.filter((o)=>o.type=="Koa"?true:false);
+            this.$store.state.vueArticles = this.$store.state.allArticles.filter((o)=>o.type=="Vue"?true:false);
+            this.$store.state.reactArticles = this.$store.state.allArticles.filter((o)=>o.type=="React"?true:false);
+            this.$store.state.otherArticles = this.$store.state.allArticles.filter((o)=>o.type=="Ohter"?true:false);
+            // this.listData.push(obj) 
+            this.listData = this.$store.state.allArticles;
+            // let len =this.$store.state.javascriptArticles.length +this.$store.state.cssArticles.length+this.$store.state.htmlArticles.length+this.$store.state.nodeArticles.length+this.$store.state.koaArticles.length+this.$store.state.vueArticles.length+this.$store.state.otherArticles.length+this.$store.state.reactArticles.length;
+            // console.log(this.$store.state.javascriptArticles.length);
+            // console.log(this.$store.state.htmlArticles.length);
+            // console.log(this.$store.state.cssArticles.length);
+            // console.log(this.$store.state.nodeArticles.length);
+            // console.log(this.$store.state.koaArticles.length);
+            // console.log(this.$store.state.vueArticles.length);
+            // console.log(this.$store.state.reactArticles.length);
+            // console.log(this.$store.state.otherArticles.length);
+            // console.log("allLength",len)
+            //然后就是vuex中了
           }else{
             console.log('无响应')
             return false;

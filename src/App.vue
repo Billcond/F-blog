@@ -47,8 +47,8 @@ export default {
   components: {  },
     data(){
         return{
-          frontend:["Javascript",'CSS','HTML'],
-          afterend:["Node","Ko2"],
+          frontend:["JavaScript",'CSS','HTML'],
+          afterend:["Node","Koa"],
           frame:["Vue","React"],
           buttonKey:1,
         }
@@ -57,16 +57,22 @@ export default {
       clickFrontEnd(index){
         switch(index){
           case this.frontend[0]:{
+            this.$store.state.atricleType=this.frontend[0];
             this.$router.replace("/fblog/frontend")
-            console.log(this.frontend[0])
+            //所谓commit  就是模仿了git中的commit 可以方便的在devtool中方便的查看更改过的内容
+            //就用git 的想法来理解吧   实际上  上面的更改之后已经在state中可见了 这里通过commit一下就可以在devtool中查看了  后面的内容可以在commit中的事件传入
+            // this.$store.commit("some",this.frontend[0])
+            console.log(this.frontend[0],this.$store.state.atricleType)
             break;
           }
           case this.frontend[1]:{
-            console.log(this.frontend[1])
+            this.$store.state.atricleType=this.frontend[1];
+            console.log(this.frontend[1],this.$store.state.atricleType)
             break;
           }
           case this.frontend[2]:{
-            console.log(this.frontend[2])
+            this.$store.state.atricleType=this.frontend[2];
+            console.log(this.frontend[2],this.$store.state.atricleType)
             break;
           }
         }
@@ -74,11 +80,13 @@ export default {
       clickAfterEnd(index){
         switch(index){
           case this.afterend[0]:{
+            this.$store.state.atricleType=this.afterend[0];
             this.$router.replace("/fblog/afterend")
             console.log(this.afterend[0])
             break;
           }
           case this.afterend[1]:{
+            this.$store.state.atricleType=this.afterend[1];
             console.log(this.afterend[0])
             break;
           }
@@ -87,11 +95,13 @@ export default {
       clickFrame(index){
         switch(index){
           case this.frame[0]:{
+            this.$store.state.atricleType=this.frame[0];
             this.$router.replace("/fblog/frame")
             console.log(this.frame[0])
             break;
           }
           case this.frame[1]:{
+            this.$store.state.atricleType=this.frame[1];
             console.log(this.frame[1])
             break;
           }

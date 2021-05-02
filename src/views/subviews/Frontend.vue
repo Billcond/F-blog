@@ -14,9 +14,7 @@
                 <!-- -->
                 <a-breadcrumb>
                   <a-breadcrumb-item><a href="">Home</a></a-breadcrumb-item>
-                  <a-breadcrumb-item><a href="">前端</a></a-breadcrumb-item>
-                  <a-breadcrumb-item><a href="">Javascript</a></a-breadcrumb-item>
-                  <a-breadcrumb-item>An Application</a-breadcrumb-item>
+                  <a-breadcrumb-item><a @click="test" >{{this.$store.state.atricleType}}</a></a-breadcrumb-item>
                 </a-breadcrumb>
                 
                 <a-list item-layout="vertical" size="large" :pagination="pagination" :data-source="listData">
@@ -80,20 +78,66 @@ export default {
     data(){
         return{
             listData,
-        pagination: {
-        /*可以直接在这里该边下面的页码 */
-        onChange: page => {
-          console.log(page);
-        },
-        pageSize: 3,
-      },
-      actions: [///这里表示文章下面的属性
-        { type: 'eye', text: '156' },
-        { type: 'like-o', text: '2' },
-        { type: 'message' , text: '3'},
-        { type: 'history' ,text:"2020-4-26 20:00:00"}
-      ],
-
+            
+            pagination: {
+            /*可以直接在这里该边下面的页码 */
+            onChange: page => {
+              console.log(page);
+            },
+            pageSize: 3,
+          },
+          actions: [///这里表示文章下面的属性
+            { type: 'eye', text: '156' },
+            { type: 'like-o', text: '2' },
+            { type: 'message' , text: '3'},
+            { type: 'history' ,text:"2020-4-26 20:00:00"}
+          ],
+        }
+    },
+    methods:{
+      test(){
+        console.log("????????????",this.some,this.$store.state.atricleType)
+        this.some = this.$store.state.atricleType
+      }
+    }
+    ,
+    // watch:{
+    //   "$store.state.atricleType":function(){
+    //     console.log('监听',this.some)
+    //     // this.some = this.$store.state.atricleType;
+    //   }
+    // }
+    watch:{
+      '$store.state.atricleType':function(){
+        console.log("watch",this.$store.state.atricleType)
+        if(this.$store.state.atricleType=="HTML"){
+          this.listData=[];
+          this.listData = this.$store.state.htmlArticles;
+        }
+        if(this.$store.state.atricleType=="CSS"){
+          this.listData=[];
+          this.listData = this.$store.state.cssArticles;
+        }
+        if(this.$store.state.atricleType=="JavaScript"){
+          this.listData=[];
+          this.listData = this.$store.state.javascriptArticles;
+          console.log("????????????",this.listData);
+        }
+      }
+    },
+    created(){
+      if(this.$store.state.atricleType=="HTML"){
+          this.listData=[];
+          this.listData = this.$store.state.htmlArticles;
+        }
+        if(this.$store.state.atricleType=="CSS"){
+          this.listData=[];
+          this.listData = this.$store.state.cssArticles;
+        }
+        if(this.$store.state.atricleType=="JavaScript"){
+          this.listData=[];
+          this.listData = this.$store.state.javascriptArticles;
+          console.log("????????????",this.listData);
         }
     }
 }

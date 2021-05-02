@@ -13,10 +13,8 @@
                 <!--文章内容-->
                 <!-- -->
                 <a-breadcrumb>
-                  <a-breadcrumb-item><a href="">Home</a></a-breadcrumb-item>
-                  <a-breadcrumb-item><a href="">后端</a></a-breadcrumb-item>
-                  <a-breadcrumb-item><a href="">node</a></a-breadcrumb-item>
-                  <a-breadcrumb-item>An Application</a-breadcrumb-item>
+                  <a-breadcrumb-item><a href="/">Home</a></a-breadcrumb-item>
+                  <a-breadcrumb-item><a>{{this.$store.state.atricleType}}</a></a-breadcrumb-item>
                 </a-breadcrumb>
                 
                 <a-list item-layout="vertical" size="large" :pagination="pagination" :data-source="listData">
@@ -95,6 +93,33 @@ export default {
       ],
 
         }
+    },
+    created(){
+      if(this.$store.state.atricleType=="Koa"){
+          this.listData=[];
+          this.listData = this.$store.state.koaArticles;
+          console.log(this.listData)
+        }
+        if(this.$store.state.atricleType=="Node"){
+          this.listData=[];
+          this.listData = this.$store.state.nodeArticles;
+          console.log(this.listData)
+        }
+    },
+    watch:{
+      '$store.state.atricleType':function(){
+        console.log("watch",this.$store.state.atricleType)
+        if(this.$store.state.atricleType=="Koa"){
+          this.listData=[];
+          this.listData = this.$store.state.koaArticles;
+          console.log(this.listData)
+        }
+        if(this.$store.state.atricleType=="Node"){
+          this.listData=[];
+          this.listData = this.$store.state.nodeArticles;
+          console.log(this.listData)
+        }
+      }
     }
 }
 </script>
