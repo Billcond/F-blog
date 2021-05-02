@@ -109,11 +109,15 @@ export default {
             resp.data.sort((o1,o2)=>{
               return o1.createtime>o2.createtime?-1:1
             })
+            let md = new this.$markdownIt()
             for(let o of resp.data){
               let obj = {};//一开始这个在for外卖导致逻辑出错
               console.log('每一项',o)
               obj.title = o.title;
-              obj.content = o.context;
+              let tempStr = md.render(o.context)
+              tempStr = tempStr.replace(/<[^>]+>/g,"");
+              tempStr = tempStr.replace(/\s+/g,"");
+              obj.content = tempStr;
               obj.action = [
                 {type:'eye',text:o.seecount},
                 {type:'like-o',text:o.likes},
