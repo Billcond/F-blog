@@ -127,7 +127,7 @@ export default {
           this.$store.state.reactArticles = JSON.parse(sessionStorage.getItem('reactArticles'));
           this.$store.state.otherArticles = JSON.parse(sessionStorage.getItem('otherArticles'));
           this.$store.state.allArticles = JSON.parse(sessionStorage.getItem('allArticles'));
-          this.$store.state.atricleType = "Other";//默认
+          this.$store.state.atricleType = sessionStorage.getItem("articleType");//默认
         }
       if(this.$store.state.atricleType=="Other"){
           this.listData=[];
