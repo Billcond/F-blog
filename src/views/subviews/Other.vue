@@ -102,7 +102,8 @@ export default {
       clickToArticle(title){
         //这里又是路由  也就是替换当前的内容 需要将当前的标题 和数据库中的内容传过去
         console.log('?????标题按??',title)
-         this.$store.state.currentArticle = title;
+         this.$store.state.currentArticleTitle = title;
+         this.$store.state.currentArticle = this.listData.filter((o)=>o.title==title)[0].rowcontent
         this.$router.replace("/fblog/article");
       }
     }

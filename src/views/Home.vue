@@ -42,7 +42,7 @@
             </template>
             <a-list-item-meta>
               <!--原来是这样的  可以有description这个属性   <a-list-item-meta :description="item.description">-->
-              <a slot="title" :href="item.href">{{ item.title }}</a>
+              <a   slot="title" @click="clickToArticle(item.title)" >{{ item.title }}</a>
             </a-list-item-meta>
             {{ item.content }}<!--这里是文章内容-->
           </a-list-item>
@@ -98,7 +98,17 @@ export default {
         }
     },
     methods:{
-      
+      clickToArticle(title){
+        //这里又是路由  也就是替换当前的内容 需要将当前的标题 和数据库中的内容传过去
+        this.$store.state.currentArticleTitle = title;
+        let temp = this.listData.filter((o)=>o.title==title)[0];
+        this.$store.state.currentArticle = temp.rowcontent;
+        if(temp.type=="Ohter"){
+          temp.type = "Other"
+        }
+        this.$store.state.atricleType = temp.type;
+        this.$router.replace("/fblog/article");
+      }
     },
     created(){
       if(sessionStorage.getItem("allArticles")===null){
@@ -116,7 +126,9 @@ export default {
                 let obj = {};//一开始这个在for外卖导致逻辑出错
               //console.log('每一项',o)
                 obj.title = o.title;
+                //在这里将返回来的data中的markdown数据都给转换了
                 let tempStr = md.render(o.context)
+                obj.rowcontent = tempStr;//这里保存一下
                 tempStr = tempStr.replace(/<[^>]+>/g,"");
                 tempStr = tempStr.replace(/\s+/g,"");
                 obj.content = tempStr;
@@ -137,8 +149,8 @@ export default {
             this.$store.state.vueArticles = this.$store.state.allArticles.filter((o)=>o.type=="Vue"?true:false);
             this.$store.state.reactArticles = this.$store.state.allArticles.filter((o)=>o.type=="React"?true:false);
             this.$store.state.otherArticles = this.$store.state.allArticles.filter((o)=>o.type=="Ohter"?true:false);
+            //这里是数据库中的Other拼写错了  导致上面Other 更改了一下
             this.listData = this.$store.state.allArticles;
-            
             sessionStorage.setItem("javascriptArticles",JSON.stringify(this.$store.state.javascriptArticles))
             sessionStorage.setItem("cssArticles",JSON.stringify(this.$store.state.cssArticles));
             sessionStorage.setItem("htmlArticles",JSON.stringify(this.$store.state.htmlArticles));

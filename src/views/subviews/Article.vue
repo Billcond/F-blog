@@ -14,16 +14,16 @@
                 <!-- -->
                 <a-breadcrumb>
                   <a-breadcrumb-item><a href="/">Home</a></a-breadcrumb-item>
-                  <a-breadcrumb-item><a @click="clickBackTo()">{{this.$store.state.atricleType}}</a></a-breadcrumb-item>
-                  <a-breadcrumb-item><a>{{this.$store.state.currentArticle}}</a></a-breadcrumb-item>
+                  <a-breadcrumb-item><a @click="clickBackTo()">{{this.type}}</a></a-breadcrumb-item>
+                  <a-breadcrumb-item><a>{{this.title}}</a></a-breadcrumb-item>
                 </a-breadcrumb>
+                <br>
+                <br>
                 <div style="background:#ECECEC;">
-                <a-card :title="title" :bordered="false" style="width: 100%">
-                  <p>Card content</p>
-                  <p>Card content</p>
-                  <p>Card content</p>
+                <a-card  id = "article" :title="title" :bordered="false" style="width: 100%">
+                 
                 </a-card>
-              </div>
+                </div>
             </div>
         </a-layout-content>
         <!--侧边栏-->
@@ -52,7 +52,9 @@ export default {
     name:"Article",
     data(){
         return{
-          title:"asdf"
+          title:"",
+          atricle:"",
+          type:"",
         }
     },
     methods:{
@@ -104,12 +106,25 @@ export default {
       }
     },
     created(){
-      this.title = this.$store.state.currentArticle
+ 
+      //这里需要更新 因为home 和对应的页面中传进来的不一样
+      sessionStorage.setItem("curTitle",this.$store.state.currentArticleTitle)
+      sessionStorage.setItem("curType",this.$store.state.atricleType)
+      sessionStorage.setItem("curArticle",this.$store.state.currentArticle)
+      this.title = sessionStorage.getItem('curTitle')
+      this.atricle = sessionStorage.getItem('curArticle')
+      this.type = sessionStorage.getItem("curType")
+      
+      console.log('?????!!!!!!???????',this.title,this.type,this.atricle)
     },
     watch:{
       '$store.state.atricleType':function(){
         
       }
+    },
+    mounted(){
+      let dom = document.getElementById("article")
+      dom.innerHTML= this.atricle;
     }
 }
 </script>

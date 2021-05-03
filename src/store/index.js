@@ -15,7 +15,7 @@ export default new Vuex.Store({
     vueArticles:[],
     reactArticles:[],
     otherArticles:[],
-    articleTitle:"",
+    currentArticleTitle:"",
     currentArticle:"",
   },
   mutations: {
