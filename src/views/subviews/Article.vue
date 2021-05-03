@@ -14,9 +14,16 @@
                 <!-- -->
                 <a-breadcrumb>
                   <a-breadcrumb-item><a href="/">Home</a></a-breadcrumb-item>
-                  <a-breadcrumb-item><a>{{this.$store.state.atricleType}}</a></a-breadcrumb-item>
-                  <a-breadcrumb-item><a>articleTitle</a></a-breadcrumb-item>
+                  <a-breadcrumb-item><a @click="clickBackTo()">{{this.$store.state.atricleType}}</a></a-breadcrumb-item>
+                  <a-breadcrumb-item><a>{{this.$store.state.currentArticle}}</a></a-breadcrumb-item>
                 </a-breadcrumb>
+                <div style="background:#ECECEC;">
+                <a-card :title="title" :bordered="false" style="width: 100%">
+                  <p>Card content</p>
+                  <p>Card content</p>
+                  <p>Card content</p>
+                </a-card>
+              </div>
             </div>
         </a-layout-content>
         <!--侧边栏-->
@@ -45,11 +52,59 @@ export default {
     name:"Article",
     data(){
         return{
-
+          title:"asdf"
         }
     },
+    methods:{
+      clickBackTo(){
+        console.log('应该返回上一层',this.$store.state.atricleType)
+        let temp = this.$store.state.atricleType;
+        switch(temp){
+          case "JavaScript":{
+            this.$router.replace('/fblog/frontend')
+            console.log("BacktoJavascript")
+            break;
+          }
+          case "CSS":{
+            this.$router.replace('/fblog/frontend')
+            console.log("BacktoCSS")
+            break;
+          }
+          case "HTML":{
+            this.$router.replace('/fblog/frontend')
+            console.log("BacktoHTML")
+            break;
+          }
+          case "Node":{
+            this.$router.replace('/fblog/afterend')
+            console.log("BacktNODE")
+            break;
+          }
+          case "Koa":{
+            this.$router.replace('/fblog/afterend')
+            console.log("BacktoKOAt")
+            break;
+          }
+          case "Vue":{
+            this.$router.replace('/fblog/frame')
+            console.log("BacktoVUE")
+            break;
+          }
+          case "React":{
+            this.$router.replace('/fblog/frame')
+            console.log("BacktoREACT")
+            break;
+          }
+          case "Other":{
+            this.$router.replace('/fblog/other')
+            console.log("BacktoOTHER")
+            break;
+          }
+        }
+      }
+    },
     created(){
-      
+      this.title = this.$store.state.currentArticle
     },
     watch:{
       '$store.state.atricleType':function(){

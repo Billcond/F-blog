@@ -26,8 +26,9 @@
                     </span>
                     </template>
                     
+                    <!--这里进行文章的跳转-->
                     <a-list-item-meta :description="item.description">
-                    <a slot="title" @click="routerToArticle">{{ item.title }}</a>
+                    <a slot="title" @click="clickToArticle(item.title)">{{ item.title }}</a>
                     </a-list-item-meta>
                     {{ item.content }}<!--这里是文章内容-->
                 </a-list-item>
@@ -98,8 +99,10 @@ export default {
       test(){
         console.log("????????????",this.some,this.$store.state.atricleType)
       },
-      routerToArticle(){
-        console.log('???????')
+      clickToArticle(title){
+        //这里又是路由  也就是替换当前的内容 需要将当前的标题 和数据库中的内容传过去
+        console.log('?????标题按??',title)
+        this.$store.state.currentArticle = title;
         this.$router.replace("/fblog/article");
       }
     }
