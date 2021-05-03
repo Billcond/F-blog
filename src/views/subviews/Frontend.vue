@@ -27,7 +27,7 @@
                     </template>
                     
                     <a-list-item-meta :description="item.description">
-                    <a slot="title" :href="item.href">{{ item.title }}</a>
+                    <a slot="title" @click="routerToArticle">{{ item.title }}</a>
                     </a-list-item-meta>
                     {{ item.content }}<!--这里是文章内容-->
                 </a-list-item>
@@ -50,7 +50,7 @@
         </a-layout-sider>
       </a-layout>
       
-      <a-layout-footer>Footer</a-layout-footer>
+      <a-layout-footer></a-layout-footer>
     </a-layout>
 </template>
 <script>
@@ -97,7 +97,10 @@ export default {
     methods:{
       test(){
         console.log("????????????",this.some,this.$store.state.atricleType)
-        this.some = this.$store.state.atricleType
+      },
+      routerToArticle(){
+        console.log('???????')
+        this.$router.replace("/fblog/article");
       }
     }
     ,

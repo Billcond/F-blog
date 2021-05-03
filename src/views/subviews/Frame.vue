@@ -50,7 +50,7 @@
         </a-layout-sider>
       </a-layout>
       
-      <a-layout-footer>Footer</a-layout-footer>
+      <a-layout-footer></a-layout-footer>
     </a-layout>
 </template>
 <script>

@@ -8,6 +8,7 @@ import Messageboard from "../views/subviews/Messageboard"
 import Neighbor from "../views/subviews/Neighbor"
 import SubViewTemplate from "../views/subviews/SubviewTemplate"
 import Frame from "../views/subviews/Frame"
+import Article from "../views/subviews/Article"
 Vue.use(VueRouter)
 
 const routes = [
@@ -48,11 +49,17 @@ const routes = [
     path:'/fblog/neighbor',
     name:"Neighbor",
     component:Neighbor
-  },{
+  },
+  {
     path:'/fblog/messageboard',
     name:"Messageboard",
     component:Messageboard
   },
+  {
+    path:"/fblog/article",
+    name:"Article",
+    component:Article
+  }
 ]
 
 const router = new VueRouter({
