@@ -101,7 +101,8 @@ export default {
       
     },
     created(){
-      this.getRequest('/articles').then(resp=>{
+      if(sessionStorage.getItem("allArticles")===null){
+        this.getRequest('/articles').then(resp=>{
           if(resp){
             console.log("主页面中访问数据库 有响应------------------",resp.data)
             //更新data中的数据
@@ -136,24 +137,41 @@ export default {
             this.$store.state.vueArticles = this.$store.state.allArticles.filter((o)=>o.type=="Vue"?true:false);
             this.$store.state.reactArticles = this.$store.state.allArticles.filter((o)=>o.type=="React"?true:false);
             this.$store.state.otherArticles = this.$store.state.allArticles.filter((o)=>o.type=="Ohter"?true:false);
-            // this.listData.push(obj) 
             this.listData = this.$store.state.allArticles;
-            // let len =this.$store.state.javascriptArticles.length +this.$store.state.cssArticles.length+this.$store.state.htmlArticles.length+this.$store.state.nodeArticles.length+this.$store.state.koaArticles.length+this.$store.state.vueArticles.length+this.$store.state.otherArticles.length+this.$store.state.reactArticles.length;
-            // console.log(this.$store.state.javascriptArticles.length);
-            // console.log(this.$store.state.htmlArticles.length);
-            // console.log(this.$store.state.cssArticles.length);
-            // console.log(this.$store.state.nodeArticles.length);
-            // console.log(this.$store.state.koaArticles.length);
-            // console.log(this.$store.state.vueArticles.length);
-            // console.log(this.$store.state.reactArticles.length);
-            // console.log(this.$store.state.otherArticles.length);
-            // console.log("allLength",len)
-            //然后就是vuex中了
+            
+            sessionStorage.setItem("javascriptArticles",JSON.stringify(this.$store.state.javascriptArticles))
+            sessionStorage.setItem("cssArticles",JSON.stringify(this.$store.state.cssArticles));
+            sessionStorage.setItem("htmlArticles",JSON.stringify(this.$store.state.htmlArticles));
+            sessionStorage.setItem("nodeArticles",JSON.stringify(this.$store.state.nodeArticles));
+            sessionStorage.setItem("koaArticles",JSON.stringify(this.$store.state.koaArticles));
+            sessionStorage.setItem("vueArticles",JSON.stringify(this.$store.state.vueArticles));
+            sessionStorage.setItem("reactArticles",JSON.stringify(this.$store.state.reactArticles));
+            sessionStorage.setItem("otherArticles",JSON.stringify(this.$store.state.otherArticles));
+            sessionStorage.setItem("allArticles",JSON.stringify(this.$store.state.allArticles));
           }else{
             console.log('无响应')
             return false;
           }
         })
+      }else{//说明sessionStorage中存在消息
+          if(this.$store.state.allArticles.length==0){//说明刷新了  重新加载数据
+              this.$store.state.javascriptArticles = JSON.parse(sessionStorage.getItem('javascriptArticles'))
+              this.$store.state.cssArticles = JSON.parse(sessionStorage.getItem('cssArticles'));
+              this.$store.state.htmlArticles = JSON.parse(sessionStorage.getItem('htmlArticles'));
+              this.$store.state.nodeArticles = JSON.parse(sessionStorage.getItem('nodeArticles'));
+              this.$store.state.koaArticles = JSON.parse(sessionStorage.getItem('koaArticles'));
+              this.$store.state.vueArticles = JSON.parse(sessionStorage.getItem('vueArticles'));
+              this.$store.state.reactArticles = JSON.parse(sessionStorage.getItem('reactArticles'));
+              this.$store.state.otherArticles = JSON.parse(sessionStorage.getItem('otherArticles'));
+              this.$store.state.allArticles = JSON.parse(sessionStorage.getItem('allArticles'));  
+          }else{//没有刷新
+              //不管
+          }
+          this.listData = this.$store.state.allArticles;
+            
+      }
+        
+        
     }
     
 }

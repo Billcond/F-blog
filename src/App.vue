@@ -55,10 +55,12 @@ export default {
     },
     methods:{
       clickFrontEnd(index){
+        if(this.$router.history.current.path!=="/fblog/frontend")
+        this.$router.replace("/fblog/frontend")
         switch(index){
           case this.frontend[0]:{
             this.$store.state.atricleType=this.frontend[0];
-            this.$router.replace("/fblog/frontend")
+            sessionStorage.setItem("articleType",this.$store.state.atricleType) //保存当前的位置  防止刷新丢失
             //所谓commit  就是模仿了git中的commit 可以方便的在devtool中方便的查看更改过的内容
             //就用git 的想法来理解吧   实际上  上面的更改之后已经在state中可见了 这里通过commit一下就可以在devtool中查看了  后面的内容可以在commit中的事件传入
             // this.$store.commit("some",this.frontend[0])
@@ -67,41 +69,49 @@ export default {
           }
           case this.frontend[1]:{
             this.$store.state.atricleType=this.frontend[1];
+            sessionStorage.setItem("articleType",this.$store.state.atricleType) //保存当前的位置  防止刷新丢失
             console.log(this.frontend[1],this.$store.state.atricleType)
             break;
           }
           case this.frontend[2]:{
             this.$store.state.atricleType=this.frontend[2];
+            sessionStorage.setItem("articleType",this.$store.state.atricleType) //保存当前的位置  防止刷新丢失
             console.log(this.frontend[2],this.$store.state.atricleType)
             break;
           }
         }
       },
       clickAfterEnd(index){
+        if(this.$router.history.current.path!=="/fblog/afterend")
+            this.$router.replace("/fblog/afterend")
         switch(index){
           case this.afterend[0]:{
             this.$store.state.atricleType=this.afterend[0];
-            this.$router.replace("/fblog/afterend")
+            sessionStorage.setItem("articleType",this.$store.state.atricleType) //保存当前的位置  防止刷新丢失
             console.log(this.afterend[0])
             break;
           }
           case this.afterend[1]:{
             this.$store.state.atricleType=this.afterend[1];
+            sessionStorage.setItem("articleType",this.$store.state.atricleType) //保存当前的位置  防止刷新丢失
             console.log(this.afterend[0])
             break;
           }
         }
       },
       clickFrame(index){
+        if(this.$router.history.current.path!=="/fblog/frame")
+            this.$router.replace("/fblog/frame")
         switch(index){
           case this.frame[0]:{
             this.$store.state.atricleType=this.frame[0];
-            this.$router.replace("/fblog/frame")
+            sessionStorage.setItem("articleType",this.$store.state.atricleType) //保存当前的位置  防止刷新丢失
             console.log(this.frame[0])
             break;
           }
           case this.frame[1]:{
             this.$store.state.atricleType=this.frame[1];
+            sessionStorage.setItem("articleType",this.$store.state.atricleType) //保存当前的位置  防止刷新丢失
             console.log(this.frame[1])
             break;
           }
@@ -116,10 +126,14 @@ export default {
         this.$router.replace("/fblog/neighbor")
       },
       clickOther(msg){//
-      console.log(msg)
-        this.$router.push("/fblog/other")
+      if(this.$router.history.current.path!=="/fblog/other")
+      this.$router.push("/fblog/other")
+      this.$store.state.atricleType="Other";
+      sessionStorage.setItem("articleType",this.$store.state.atricleType) //保存当前的位置  防止刷新丢失
+      console.log(msg)  
       },
       clickHome(){
+        if(this.$router.history.current.path!=="/fblog/home")
         this.$router.push("/fblog/home")
       }
       // clickOnSearch(){

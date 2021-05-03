@@ -95,6 +95,18 @@ export default {
         }
     },
     created(){
+      if(this.$store.state.allArticles.length==0){//说明刷新了  重新加载数据
+          this.$store.state.javascriptArticles = JSON.parse(sessionStorage.getItem('javascriptArticles'))
+          this.$store.state.cssArticles = JSON.parse(sessionStorage.getItem('cssArticles'));
+          this.$store.state.htmlArticles = JSON.parse(sessionStorage.getItem('htmlArticles'));
+          this.$store.state.nodeArticles = JSON.parse(sessionStorage.getItem('nodeArticles'));
+          this.$store.state.koaArticles = JSON.parse(sessionStorage.getItem('koaArticles'));
+          this.$store.state.vueArticles = JSON.parse(sessionStorage.getItem('vueArticles'));
+          this.$store.state.reactArticles = JSON.parse(sessionStorage.getItem('reactArticles'));
+          this.$store.state.otherArticles = JSON.parse(sessionStorage.getItem('otherArticles'));
+          this.$store.state.allArticles = JSON.parse(sessionStorage.getItem('allArticles'));
+          this.$store.state.atricleType = sessionStorage.getItem("articleType");//默认
+        }
       if(this.$store.state.atricleType=="Koa"){
           this.listData=[];
           this.listData = this.$store.state.koaArticles;
